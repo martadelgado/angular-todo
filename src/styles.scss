@@ -1,1 +1,6 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+  font-family: Helvetica, sans-serif;
+}
+.link:hover {
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
