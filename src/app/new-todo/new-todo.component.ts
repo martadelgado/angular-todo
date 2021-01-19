@@ -2,6 +2,10 @@ import {Component, Input, OnInit, Output} from '@angular/core';
 import {TODOS} from '../mock-todos';
 import {Todo} from '../todo';
 import {Router} from '@angular/router';
+import {Store, Select} from '@ngxs/store';
+import {TodoAction} from '../../todo/todo.actions';
+import {Observable} from 'rxjs';
+import {TodoState} from '../../todo/todo.state';
 
 @Component({
   selector: 'app-new-todo',
@@ -15,20 +19,18 @@ export class NewTodoComponent implements OnInit {
   // Is this the right way to do this? Is there another way?
   newTodo = new Todo(this.id, '', '', '', false);
 
-
-  constructor(private router: Router) { }
+  constructor(private router: Router, private store: Store) { }
 
   ngOnInit(): void {
   }
 
-  onSubmit(): void {
-    this.todos.push(this.newTodo);
+  addTodo(todo: Todo): void {
+    this.store.dispatch(new TodoAction.AddTodo(todo));
     this.submitted = true;
-    // This resets the form with new id, is it the right way to do this?
-    this.newTodo = new Todo(this.id, '', '', '', false);
     this.router.navigate(['todos']);
+    // state is showing object with new todo but TODOS doesnt update
+    console.log(this.store.snapshot());
   }
-
   clearForm(form: any): void {
     form.resetForm();
   }

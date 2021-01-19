@@ -1,8 +1,10 @@
 <div class="container__todo-list">
   <h3>todo list</h3>
-  <div *ngFor="let todo of todos">
-    <input type="checkbox" name="isChecked" [(ngModel)]="todo.isChecked">
-    <a (click)="selectedTodo(todo)" routerLink="/detail/{{todo.id}}" class="link link__todo" [ngClass]="{'checked': todo.isChecked}" [ngStyle]="addBorder()">{{todo.title}}</a>
-  </div>
+  <ng-container *ngIf="todos$|async as todos">
+    <div *ngFor="let todo of todos">
+      <input type="checkbox" name="isChecked" [(ngModel)]="todo.isChecked">
+      <a (click)="selectedTodo(todo)" routerLink="/detail/{{todo.id}}" class="link link__todo" [ngClass]="{'checked': todo.isChecked}" [ngStyle]="addBorder()">{{todo.title}}</a>
+    </div>
+  </ng-container>
 </div>
 
