@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import {Observable, of} from 'rxjs';
 import {Todo} from './todo';
 import {TODOS} from './mock-todos';
-import {TodoAction} from '../todo/todo.actions';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +22,7 @@ export class TodoService {
   }
 
   addTodo(newTodo: Todo) {
-    // what does this actually do?
-    return of(this.todos.push(newTodo));
+    // I've changed this to add to the mock-todos, is that correct?
+    return of(TODOS.push(newTodo));
   }
 }

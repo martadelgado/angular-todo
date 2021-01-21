@@ -6,6 +6,7 @@ export class Todo {
     public description: string,
     public dueDate: string,
     public isChecked: boolean,
+    public borderColor: string,
   ) {  }
 
 }

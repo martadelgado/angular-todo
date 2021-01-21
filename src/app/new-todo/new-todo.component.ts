@@ -4,8 +4,6 @@ import {Todo} from '../todo';
 import {Router} from '@angular/router';
 import {Store, Select} from '@ngxs/store';
 import {TodoAction} from '../../todo/todo.actions';
-import {Observable} from 'rxjs';
-import {TodoState} from '../../todo/todo.state';
 
 @Component({
   selector: 'app-new-todo',
@@ -16,8 +14,9 @@ export class NewTodoComponent implements OnInit {
   todos = TODOS;
   submitted = false;
   id = this.todos.length + 1;
+  borderColor = '#' +  Math.floor(Math.random() * 16777215).toString(16);
   // Is this the right way to do this? Is there another way?
-  newTodo = new Todo(this.id, '', '', '', false);
+  newTodo = new Todo(this.id, '', '', '', false, this.borderColor);
 
   constructor(private router: Router, private store: Store) { }
 
@@ -28,9 +27,8 @@ export class NewTodoComponent implements OnInit {
     this.store.dispatch(new TodoAction.AddTodo(todo));
     this.submitted = true;
     this.router.navigate(['todos']);
-    // state is showing object with new todo but TODOS doesnt update
-    console.log(this.store.snapshot());
   }
+
   clearForm(form: any): void {
     form.resetForm();
   }

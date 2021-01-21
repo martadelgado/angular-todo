@@ -26,12 +26,4 @@ export class TodosComponent implements OnInit {
   selectedTodo(todo: Todo): void {
     this.checkedTodo = todo;
   }
-
-  addBorder(): { 'border-left': string } {
-    // This color changes with every interaction and I'm not sure why
-    return {
-      'border-left': '4px solid #' + Math.floor(Math.random() * 16777215).toString(16)
-    };
-  }
-
 }

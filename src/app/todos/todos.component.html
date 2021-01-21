@@ -3,7 +3,7 @@
   <ng-container *ngIf="todos$|async as todos">
     <div *ngFor="let todo of todos">
       <input type="checkbox" name="isChecked" [(ngModel)]="todo.isChecked">
-      <a (click)="selectedTodo(todo)" routerLink="/detail/{{todo.id}}" class="link link__todo" [ngClass]="{'checked': todo.isChecked}" [ngStyle]="addBorder()">{{todo.title}}</a>
+      <a (click)="selectedTodo(todo)" routerLink="/detail/{{todo.id}}" class="link link__todo" [ngClass]="{'checked': todo.isChecked}" [ngStyle]="{'border-left': '4px solid '+todo.borderColor}">{{todo.title}}</a>
     </div>
   </ng-container>
 </div>
